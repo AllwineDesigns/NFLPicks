@@ -1,0 +1,17 @@
+.favorite-container button {
+  width: 110px;
+}
+
+.favorite-row {
+  display: flex;
+  height: 30px;
+}
+
+.favorite-center {
+  text-align: center;
+}
+
+.favorite-column {
+  width: 110px;
+  margin: 5px;
+}

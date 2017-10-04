@@ -1,0 +1,16 @@
+.moneylines-favorite {
+  width: 110px;
+}
+
+.moneylines-container input {
+  width: 40px;
+}
+
+.moneylines-row {
+  display: flex;
+  height: 30px;
+}
+
+.moneylines-column {
+  margin: 5px;
+}

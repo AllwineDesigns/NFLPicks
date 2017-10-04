@@ -1,0 +1,22 @@
+.picks-container button {
+  width: 100%;
+}
+
+.picks-randomize button {
+  width: 200px;
+}
+
+.picks-row {
+  display: flex;
+  height: 30px;
+}
+
+.picks-center {
+  text-align: center;
+}
+
+.picks-column {
+  width: 110px;
+  min-width: 110px;
+  margin: 5px;
+}

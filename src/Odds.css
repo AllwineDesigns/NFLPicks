@@ -1,0 +1,16 @@
+.odds-favorite {
+  width: 110px;
+}
+
+.odds-container input {
+  width: 40px;
+}
+
+.odds-row {
+  display: flex;
+  height: 30px;
+}
+
+.odds-column {
+  margin: 5px;
+}
