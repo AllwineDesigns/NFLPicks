@@ -20,3 +20,11 @@
   min-width: 110px;
   margin: 5px;
 }
+
+.picks-no-pick {
+  color: #dedede;
+}
+
+.picks-odds-header {
+  cursor: pointer;
+}

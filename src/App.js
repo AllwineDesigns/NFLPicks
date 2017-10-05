@@ -5,7 +5,6 @@ import Favorite from './Favorite';
 import Moneylines from './Moneylines';
 import Odds from './Odds';
 import Picks from './Picks';
-import Rank from './Rank';
 import update from 'immutability-helper';
 
 import './App.css';
@@ -26,10 +25,19 @@ class App extends Component {
       moneylines: Moneylines,
       odds: Odds,
       picks: Picks,
-      rank: Rank
     };
 
     this.callbacks = {
+      swapGames: (dragIndex, hoverIndex) => {
+        this.setState((prevState, props) => {
+          const { games } = this.state;
+          const dragGame = games[dragIndex];
+          return update(prevState, { games: { $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, dragGame]
+          ]}});
+        });
+      },
       setFavorite: (i, team) => {
         this.setState((prevState, props) => {
           const {
@@ -108,6 +116,17 @@ class App extends Component {
 
           const newGames = update([ ...games ], { [i]: { pick: { $set: team } } });
 
+          return { games: newGames };
+        });
+      },
+      sortByOdds: () => {
+        this.setState((prevState, props) => {
+          const {
+            games
+          } = prevState;
+
+          let newGames = [ ...games ];
+
           newGames.sort((a,b) => {
             let a_odds = a.override_odds ? a.odds : .5*(-a.favorite_moneyline/(100-a.favorite_moneyline)+(1-(100/(100+a.underdog_moneyline))));
             a_odds = (a.favorite === a.pick || !a.pick) ? a_odds : 1-a_odds;
@@ -122,7 +141,7 @@ class App extends Component {
 
           return { games: newGames };
         });
-      },
+      }
     };
   }
 
@@ -145,7 +164,6 @@ class App extends Component {
           <NavItem eventKey="moneylines">Moneylines</NavItem>
           <NavItem eventKey="odds">Odds</NavItem>
           <NavItem eventKey="picks">Picks</NavItem>
-          <NavItem eventKey="rank">Rank</NavItem>
         </Nav>
         <Tab games={games} callbacks={this.callbacks}/>
       </div>
